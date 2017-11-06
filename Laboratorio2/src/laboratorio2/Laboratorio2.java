@@ -23,7 +23,12 @@ public class Laboratorio2 {
      * @param args the command line arguments
      */
     public static void main(String[] args)  {
-      Ahorcado ahorcado=new Ahorcado();
+      Ahorcado ahorcado=null;
+        try {
+            ahorcado = new Ahorcado();
+        } catch (FileNotFoundException ex) {
+            System.out.println(ex.getMessage());
+        }
         try {
             ahorcado.Cargar();
         } catch (FileNotFoundException ex) {

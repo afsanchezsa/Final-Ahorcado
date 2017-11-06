@@ -6,10 +6,15 @@
 package Controlador;
 
 import Datos.Ahorcado;
+import Datos.Frase;
+import Datos.Palabra;
+import Datos.Texto;
+import static Vista.CargarObjeto.Tipo.Texto;
 import Vista.Vista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
@@ -22,19 +27,76 @@ import javax.swing.JRadioButton;
 public class Controlador implements ActionListener {
     private Vista vista;
     private Ahorcado ahorcado;
-
+   
     public Controlador(Vista vista, Ahorcado ahorcado) {
         this.vista = vista;
         this.ahorcado = ahorcado;
+        //this.vista.LlenarCampos();
+         try {
+                this.ahorcado.setModoJuego("Palabras");
+            } catch (FileNotFoundException ex) {
+                System.out.println(ex.getMessage());
+            }
+            
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        Palabra palabra;
+        Texto texto;
+        Frase frase;
+        String palabrastring;
         if(e.getSource() instanceof JButton){
         JButton boton=(JButton)e.getSource();
-        if(boton.getText().equalsIgnoreCase("A")){
+        
+         if(boton.getText().equals("Siguiente")){
+        
+           
+        if(this.ahorcado.getModoJuego().equals("Palabras")){
+        palabra=this.ahorcado.getPalabras().get(this.ahorcado.getIndicePalabra());
+        this.vista.LlenarCampos(palabra.getCadena().length());
+        this.ahorcado.CambiarPalabra();
+        }
+        
+           
+        
+        
+        
+        }
+         
+         else{
+         /*(boton.getText().equalsIgnoreCase("A")){
             System.out.println("la letra es a");
-        }else if(e.getSource() instanceof JRadioButton ){
+            System.out.println(this.ahorcado.getPalabras().get(0).getCadena());
+        */if(this.ahorcado.getModoJuego().equals("Palabras")){
+        ArrayList<Integer>indiceletraencontrada=new ArrayList<>();
+            palabra=this.ahorcado.getPalabras().get(this.ahorcado.getIndicePalabra()-1);
+        palabrastring=palabra.getCadena();
+        for(int i=0;i<palabrastring.length();i++){
+        char letra=palabrastring.charAt(i);
+        if(Character.toString(letra).equalsIgnoreCase(boton.getText())){
+        indiceletraencontrada.add(i);
+            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+        }
+        
+        }
+        this.vista.setCamposTexto( indiceletraencontrada, boton.getText());
+        }
+         
+         
+         }
+         }
+        
+                
+        else if(e.getSource() instanceof JRadioButton ){
         JRadioButton radio=(JRadioButton)e.getSource();
             if(radio.getText().equals("Palabras")&&radio.isSelected()){
             
@@ -58,7 +120,7 @@ public class Controlador implements ActionListener {
         
         
         }
-        }
+        
         
     }
     

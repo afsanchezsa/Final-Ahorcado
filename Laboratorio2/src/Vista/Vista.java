@@ -8,15 +8,19 @@ package Vista;
 import Controlador.Controlador;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.PopupMenu;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -46,13 +50,15 @@ public class Vista extends JFrame {
     private JRadioButton []radios;
     private ButtonGroup menu;
     private ArrayList<JTextField>cuadros;
+    private JButton siguiente;
      public Vista() throws IOException{
       this.cuadros=new ArrayList<>();
          this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          this.setSize(800,500);
             this.setLocationRelativeTo(null);
             this.menu=new ButtonGroup();
-                    
+                    this.siguiente=new JButton("Siguiente");
+                  
             this.radios=new JRadioButton[3];
             this.radios[0]=new JRadioButton("Palabras",true);
             this.radios[0].addActionListener(controlador);
@@ -89,7 +95,7 @@ public class Vista extends JFrame {
 this.panel.agregarImagen();
      
 this.panel.agregarImagen();
-  
+         
     
    
     this.labelderecho.setText("Puntaje Obtenido");
@@ -124,11 +130,12 @@ this.panel.agregarImagen();
        
        this.panelCentral.add(this.panel);
          
-       this.add(this.panel,BorderLayout.CENTER);
+       this.add(this.panelCentral,BorderLayout.CENTER);
          this.panelIzquierdo.add(this.radios[0]);
             this.panelIzquierdo.add(this.radios[1]);
             this.panelIzquierdo.add(this.radios[2]);
-            
+            this.panelIzquierdo.add(this.siguiente);
+           
    this.setVisible(true);
   
     
@@ -148,16 +155,48 @@ for(JButton boton:this.botones){
 boton.addActionListener(this.controlador);
 
 }
+this.siguiente.addActionListener(this.controlador);
 
 }
-public void LlenarCampos(int cantidad,JPanel panel){
-for(int i=0;i<cantidad;i++){
+public void LlenarCampos(int cantidad){
+this.cuadros.clear();
+/*int numeroComponente=this.paneltextos.getComponentCount();
+for(int i=0;i<numeroComponente;i++){
+this.panelCentral.remove(i);
+}*/
+this.panelCentral.remove(this.paneltextos);
+this.paneltextos=null;
+
+this.paneltextos=new JPanel();
+    for(int i=0;i<cantidad;i++){
   this.cuadros.add(new JTextField(1));
+  
 }
   for(JTextField c:this.cuadros){
-  panel.add(c);
+  this.paneltextos.add(c);
   
   }
+  this.panelCentral.add(this.paneltextos);
+     
+  this.setVisible(false);
+  this.setVisible(true);
+}
+public void setCamposTexto(ArrayList<Integer>indices,String letra){
+int numerocuadrostexto=this.cuadros.size();
+/*this.cuadros.clear();
+this.panelCentral.remove(this.paneltextos);
+this.paneltextos=null;
+this.paneltextos=new JPanel();
+for(int i=0;i<numerocuadrostexto;i++){
+
+}*/
+for(Integer i:indices){
+JTextField campo=(JTextField)this.paneltextos.getComponent(i);
+campo.setText(letra);
 
 }
+
+
+}
+
 }

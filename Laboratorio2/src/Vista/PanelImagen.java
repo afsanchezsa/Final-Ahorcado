@@ -99,7 +99,7 @@ private Image fondo;
    for(int i=0;i<16;i++){
    
    }*/
-       g.drawImage(this.fondo,0,0, this.getHeight(),this.getWidth(), this);
+     //       g.drawImage(this.fondo,0,0, this.getHeight(),this.getWidth(), this);
        
        for(int i=0,j=0,m=0;m<numImagen;m++){
        g.drawImage(this.imagenes.get(m),i*63 , j*63, this);i++;

@@ -58,6 +58,7 @@ public class CargarObjeto {
     
     
     }
+    entrada.close();
     }
     
 }
