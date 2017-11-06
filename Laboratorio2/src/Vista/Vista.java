@@ -23,6 +23,7 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -61,13 +62,13 @@ public class Vista extends JFrame {
                   
             this.radios=new JRadioButton[3];
             this.radios[0]=new JRadioButton("Palabras",true);
-            this.radios[0].addActionListener(controlador);
+            
          
             
              this.radios[1]=new JRadioButton("Frases");
-                this.radios[1].addActionListener(controlador);
+               
               this.radios[2]=new JRadioButton("Textos");
-              this.radios[2].addActionListener(controlador);
+              
             this.menu.add(this.radios[0]);
             this.menu.add(this.radios[1]);
             this.menu.add(this.radios[2]);
@@ -153,7 +154,9 @@ boton.addActionListener(this.controlador);
 
 }
 this.siguiente.addActionListener(this.controlador);
-
+this.radios[0].addActionListener(controlador);
+ this.radios[1].addActionListener(controlador);
+ this.radios[2].addActionListener(controlador);
 }
 public void LlenarCampos(int cantidad){
 this.cuadros.clear();
@@ -203,5 +206,8 @@ this.panel.agregarImagen();
 public int numImagen(){
 return this.panel.numeroIm();
 
+}
+public void AvisoPerder(){
+JOptionPane.showMessageDialog(this, "PERDISTE");
 }
 }

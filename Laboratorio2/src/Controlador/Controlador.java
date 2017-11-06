@@ -56,6 +56,11 @@ public class Controlador implements ActionListener {
         palabra=this.ahorcado.getPalabras().get(this.ahorcado.getIndicePalabra());
         this.vista.LlenarCampos(palabra.getCadena().length());
         this.ahorcado.CambiarPalabra();
+        }else if(this.ahorcado.getModoJuego().equalsIgnoreCase("Frases")){
+        frase=this.ahorcado.getFrases().get(this.ahorcado.getIndiceFrase());
+        this.vista.LlenarCampos(frase.getCadena().length());
+        this.ahorcado.CambiarFrase();
+      
         }
         
            
@@ -82,7 +87,10 @@ public class Controlador implements ActionListener {
         }
         this.vista.setCamposTexto( indiceletraencontrada, boton.getText());
        if(indiceletraencontrada.size()==0){//si el tamaño del arreglo de indices de letras encontradas es cero entonces la funcion equivocacion pinta una imagen
-        this.vista.Equivocacion();
+        if(this.vista.numImagen()>=16){
+        this.vista.AvisoPerder();
+        }
+           this.vista.Equivocacion();
             
         }
         }
@@ -104,7 +112,7 @@ public class Controlador implements ActionListener {
             
             
             } else if(radio.getText().equals("Frases")&&radio.isSelected()){
-            
+                
             try {
                 this.ahorcado.setModoJuego("Frases");
             } catch (FileNotFoundException ex) {
