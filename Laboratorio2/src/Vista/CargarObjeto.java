@@ -33,7 +33,7 @@ public class CargarObjeto {
     this.cadenas.add(cadena);
     
     }
-   
+   entrada.close();
     
     
     
@@ -45,11 +45,11 @@ public class CargarObjeto {
     this.cadenas.add(cadena);
     
     }
-            
+    entrada.close();
             
             
           
-    }else{
+    }else if(this.tipo.equals(this.tipo.Texto)){
      this.entrada=new Scanner(new File("Objetos/Textos.txt"));
     while(entrada.hasNextLine()){
     String cadena;

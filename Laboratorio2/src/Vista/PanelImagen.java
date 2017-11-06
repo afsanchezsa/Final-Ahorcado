@@ -111,7 +111,10 @@ private Image fondo;
        
     }
 public void agregarImagen(){
+if(this.numImagen<15){
 this.numImagen++;
+}
+    
 
 this.repaint();
 }

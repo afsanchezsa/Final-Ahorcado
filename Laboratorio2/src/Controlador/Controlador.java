@@ -45,7 +45,7 @@ public class Controlador implements ActionListener {
         Palabra palabra;
         Texto texto;
         Frase frase;
-        String palabrastring;
+        String palabrastring,frasestring,textostring;
         if(e.getSource() instanceof JButton){
         JButton boton=(JButton)e.getSource();
         
@@ -73,9 +73,11 @@ public class Controlador implements ActionListener {
          /*(boton.getText().equalsIgnoreCase("A")){
             System.out.println("la letra es a");
             System.out.println(this.ahorcado.getPalabras().get(0).getCadena());
-        */if(this.ahorcado.getModoJuego().equals("Palabras")){
+        */
+         //MODO PALABRAS
+         if(this.ahorcado.getModoJuego().equals("Palabras")){
         ArrayList<Integer>indiceletraencontrada=new ArrayList<>();
-            palabra=this.ahorcado.getPalabras().get(this.ahorcado.getIndicePalabra()-1);
+            palabra=this.ahorcado.getPalabras().get(this.ahorcado.getIndicePalabra()-1);//se pone -1 dado que arriba se puso la declaracion cambiarpalabra dado que esta ultima posicion del arreglo no esta ocupada pero la penultima si
        
             palabrastring=palabra.getCadena();
         for(int i=0;i<palabrastring.length();i++){
@@ -94,6 +96,54 @@ public class Controlador implements ActionListener {
             
         }
         }
+        //----------------------------------------------------------------------------
+        //MODO FRASES
+        else if(this.ahorcado.getModoJuego().equals("Frases")){
+        ArrayList<Integer>indiceletraencontrada=new ArrayList<>();
+        frase=this.ahorcado.getFrases().get(this.ahorcado.getIndiceFrase()-1);
+        frasestring=frase.getCadena();
+         for(int i=0;i<frasestring.length();i++){
+        char letra=frasestring.charAt(i);
+        if(Character.toString(letra).equalsIgnoreCase(boton.getText())){
+        indiceletraencontrada.add(i);//pone en arraylist la posicion de la letra encontrada en la palabra
+              }
+         
+        }
+        this.vista.setCamposTexto( indiceletraencontrada, boton.getText());//llena los campos que les corresponde la letra del boton
+       if(indiceletraencontrada.size()==0){//si el tamaño del arreglo de indices de letras encontradas es cero entonces la funcion equivocacion pinta una imagen
+        if(this.vista.numImagen()>=16){
+        this.vista.AvisoPerder();
+        }
+           this.vista.Equivocacion();
+            
+        }
+        
+        }else if(this.ahorcado.getModoJuego().equals("Textos")){
+        
+        ArrayList<Integer>indiceletraencontrada=new ArrayList<>();
+        
+        texto=this.ahorcado.getTextos().get(this.ahorcado.getIndiceTexto()-1);
+        textostring=texto.getCadena();
+         for(int i=0;i<textostring.length();i++){
+        char letra=textostring.charAt(i);
+        if(Character.toString(letra).equalsIgnoreCase(boton.getText())){
+        indiceletraencontrada.add(i);//pone en arraylist la posicion de la letra encontrada en la palabra
+              }
+         
+        }
+        this.vista.setCamposTexto( indiceletraencontrada, boton.getText());//llena los campos que les corresponde la letra del boton
+       if(indiceletraencontrada.size()==0){//si el tamaño del arreglo de indices de letras encontradas es cero entonces la funcion equivocacion pinta una imagen
+        if(this.vista.numImagen()>=16){
+        this.vista.AvisoPerder();
+        }
+           this.vista.Equivocacion();
+            
+        }
+        
+        
+        
+        }
+        
          
          
          }
@@ -119,6 +169,13 @@ public class Controlador implements ActionListener {
                 System.out.println(ex.getMessage());
             }
             
+            
+            }else if(radio.getText().equalsIgnoreCase("Textos")){
+            try {
+                this.ahorcado.setModoJuego("Textos");
+            } catch (FileNotFoundException ex) {
+                System.out.println(ex.getMessage());
+            }
             
             }
         

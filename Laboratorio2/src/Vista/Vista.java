@@ -192,6 +192,7 @@ for(int i=0;i<numerocuadrostexto;i++){
 }*/
 for(Integer i:indices){
 JTextField campo=(JTextField)this.paneltextos.getComponent(i);
+
 campo.setText(letra);
 
 }
