@@ -71,24 +71,20 @@ public class Controlador implements ActionListener {
         */if(this.ahorcado.getModoJuego().equals("Palabras")){
         ArrayList<Integer>indiceletraencontrada=new ArrayList<>();
             palabra=this.ahorcado.getPalabras().get(this.ahorcado.getIndicePalabra()-1);
-        palabrastring=palabra.getCadena();
+       
+            palabrastring=palabra.getCadena();
         for(int i=0;i<palabrastring.length();i++){
         char letra=palabrastring.charAt(i);
         if(Character.toString(letra).equalsIgnoreCase(boton.getText())){
-        indiceletraencontrada.add(i);
-            
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-        }
-        
+        indiceletraencontrada.add(i);//pone en arraylist la posicion de la letra encontrada en la palabra
+              }
+         
         }
         this.vista.setCamposTexto( indiceletraencontrada, boton.getText());
+       if(indiceletraencontrada.size()==0){//si el tamaño del arreglo de indices de letras encontradas es cero entonces la funcion equivocacion pinta una imagen
+        this.vista.Equivocacion();
+            
+        }
         }
          
          

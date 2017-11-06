@@ -115,6 +115,9 @@ this.numImagen++;
 
 this.repaint();
 }
+public int numeroIm(){
+return this.numImagen;
+}
 public Image CargarImagen(String ruta){
 ImageIcon img=new ImageIcon(ruta);
 Image imagen=img.getImage();

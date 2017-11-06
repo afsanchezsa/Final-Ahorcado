@@ -90,11 +90,8 @@ public class Vista extends JFrame {
      this.panelDerecho.setBackground(Color.BLUE);
   
      this.panel=new PanelImagen();
-     this.panel.agregarImagen();
-   this.panel.agregarImagen();
-this.panel.agregarImagen();
      
-this.panel.agregarImagen();
+ 
          
     
    
@@ -198,5 +195,13 @@ campo.setText(letra);
 
 
 }
+public void Equivocacion(){
+this.panel.agregarImagen();
 
+
+}
+public int numImagen(){
+return this.panel.numeroIm();
+
+}
 }
