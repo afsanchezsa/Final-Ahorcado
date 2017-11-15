@@ -7,12 +7,11 @@ package Datos;
 
 /**
  *
- * @author COMPAQ
+ * @author INTEL
  */
 public class Frase extends ObjetoJuego{
-    
     public Frase(String cadena) {
         super(cadena);
     }
-    
 }
+

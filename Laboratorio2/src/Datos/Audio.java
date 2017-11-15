@@ -7,34 +7,31 @@ package Datos;
 
 import java.applet.Applet;
 import java.applet.AudioClip;
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
+import java.net.MalformedURLException;
 
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import sun.audio.AudioPlayer;
-import sun.audio.AudioStream;
-import javazoom.jl.decoder.JavaLayerException;
-import javazoom.jl.player.Player;
-import javazoom.jl.player.advanced.AdvancedPlayer;
 /**
  *
  * @author COMPAQ
  */
-public class Audio {
-    //private AudioClip Audio;
-    private File file;
-AdvancedPlayer player;
-    public Audio(String ruta) throws FileNotFoundException, IOException, JavaLayerException {
-   
-}
-    public void playAudioClip(){
-        
+public class Audio implements Runnable{
+    private URL url = null;
+    private String nombreArchivo = "";
+
+    public Audio(String nombreArchivo) {
+        this.nombreArchivo = nombreArchivo;
+    }
+    @Override
+    public void run() {
+        try {
+            url = new URL("file:Audios/"+nombreArchivo+".wav");
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(Audio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        AudioClip ac = Applet.newAudioClip(url);
+         ac.play();
     }
 }

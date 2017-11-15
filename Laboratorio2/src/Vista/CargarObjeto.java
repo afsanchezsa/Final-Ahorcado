@@ -21,17 +21,17 @@ public class CargarObjeto {
     private Tipo tipo;
     private Scanner entrada;
     private ArrayList<String>cadenas;
+    
     public CargarObjeto(Tipo tipo) throws FileNotFoundException {
         this.cadenas=new ArrayList<>();
     this.tipo=tipo;
     if(this.tipo.equals(this.tipo.Palabras)){
-        
     this.entrada=new Scanner(new File("Objetos/Palabras.txt"));
     while(entrada.hasNext()){
     String cadena;
     cadena=entrada.next();
     this.cadenas.add(cadena);
-    
+                                                        System.out.println("La palabra es: "+this.cadenas);
     }
    entrada.close();
     
