@@ -52,6 +52,7 @@ public class Vista extends JFrame {
     private ButtonGroup menu;
     private ArrayList<JTextField>cuadros;
     private JButton siguiente;
+    private JButton escuchar;
      public Vista() throws IOException{
       this.cuadros=new ArrayList<>();
          this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -59,7 +60,7 @@ public class Vista extends JFrame {
             this.setLocationRelativeTo(null);
             this.menu=new ButtonGroup();
                     this.siguiente=new JButton("Siguiente");
-                  
+                  this.escuchar=new JButton("Escuchar");
             this.radios=new JRadioButton[3];
             this.radios[0]=new JRadioButton("Palabras",true);
             
@@ -133,6 +134,7 @@ public class Vista extends JFrame {
             this.panelIzquierdo.add(this.radios[1]);
             this.panelIzquierdo.add(this.radios[2]);
             this.panelIzquierdo.add(this.siguiente);
+            this.panelIzquierdo.add(this.escuchar);
            
    this.setVisible(true);
   
@@ -157,6 +159,7 @@ this.siguiente.addActionListener(this.controlador);
 this.radios[0].addActionListener(controlador);
  this.radios[1].addActionListener(controlador);
  this.radios[2].addActionListener(controlador);
+ this.escuchar.addActionListener(controlador);
 }
 public void LlenarCampos(int cantidad){
 this.cuadros.clear();

@@ -8,8 +8,10 @@ package Datos;
 import Vista.CargarObjeto;
 import Vista.CargarObjeto.Tipo;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.TreeMap;
+import javazoom.jl.decoder.JavaLayerException;
 
 /**
  *
@@ -21,7 +23,7 @@ public class Ahorcado {
       private ArrayList<Frase>frases;
       private String ModoJuego;
       private int indicePalabra,indiceFrase,indiceTexto;
-      public Ahorcado() throws FileNotFoundException{
+      public Ahorcado() throws FileNotFoundException, IOException, JavaLayerException{
       this.palabras=new ArrayList<>();
       this.frases=new ArrayList<>();
       this.textos=new ArrayList<>();
@@ -53,18 +55,18 @@ public class Ahorcado {
     public void AddTexto(Texto texto){
     this.textos.add(texto);
     }
-    public void setModoJuego(String modojuego) throws FileNotFoundException{
+    public void setModoJuego(String modojuego) throws FileNotFoundException, IOException, JavaLayerException{
     this.ModoJuego=modojuego;
     this.Cargar();
     
     }
-    public  void Cargar() throws FileNotFoundException{
+    public  void Cargar() throws FileNotFoundException, IOException, JavaLayerException{
          CargarObjeto cargar;
         if(this.ModoJuego.equalsIgnoreCase("Palabras")){
             cargar=new CargarObjeto(Tipo.Palabras);
             ArrayList<String>cadenas=cargar.getCadenas();
             for(String s:cadenas){
-            this.palabras.add(new Palabra(s,s+".wav"));
+            this.palabras.add(new Palabra(s,s+".mp3"));
             }
         }else if(this.ModoJuego.equalsIgnoreCase("Frases")){
          cargar=new CargarObjeto(Tipo.Frases);

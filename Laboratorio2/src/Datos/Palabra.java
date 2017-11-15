@@ -5,15 +5,22 @@
  */
 package Datos;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import javazoom.jl.decoder.JavaLayerException;
+
 /**
  *
  * @author COMPAQ
  */
     public class Palabra extends ObjetoJuego {
     private Audio audio;
-    public Palabra(String cadena,String rutaaudio) {
+    public Palabra(String cadena,String rutaaudio) throws IOException, FileNotFoundException, JavaLayerException {
         super(cadena);
         this.audio=new Audio(rutaaudio);
     }
+    public void Escuchar(){
+    this.audio.playAudioClip();
     
+    }
 }

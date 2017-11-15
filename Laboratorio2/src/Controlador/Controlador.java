@@ -14,11 +14,13 @@ import Vista.Vista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
+import javazoom.jl.decoder.JavaLayerException;
 
 /**
  *
@@ -28,7 +30,7 @@ public class Controlador implements ActionListener {
     private Vista vista;
     private Ahorcado ahorcado;
    
-    public Controlador(Vista vista, Ahorcado ahorcado) {
+    public Controlador(Vista vista, Ahorcado ahorcado) throws IOException, JavaLayerException {
         this.vista = vista;
         this.ahorcado = ahorcado;
         //this.vista.LlenarCampos();
@@ -61,10 +63,18 @@ public class Controlador implements ActionListener {
         this.vista.LlenarCampos(frase.getCadena().length());
         this.ahorcado.CambiarFrase();
       
+        }else if(this.ahorcado.getModoJuego().equals("Textos")){
+        texto=this.ahorcado.getTextos().get(this.ahorcado.getIndiceTexto());
+        this.vista.LlenarCampos(texto.getCadena().length());
+        this.ahorcado.CambiarTexto();
         }
         
            
         
+        
+        
+        }else if(boton.getText().equals("Escuchar")){
+       // this.ahorcado.getPalabras().get(this.ahorcado.getIndicePalabra()).Escuchar();
         
         
         }
@@ -117,7 +127,7 @@ public class Controlador implements ActionListener {
            this.vista.Equivocacion();
             
         }
-        
+        //MODO TEXTOS
         }else if(this.ahorcado.getModoJuego().equals("Textos")){
         
         ArrayList<Integer>indiceletraencontrada=new ArrayList<>();
@@ -135,6 +145,7 @@ public class Controlador implements ActionListener {
        if(indiceletraencontrada.size()==0){//si el tamaño del arreglo de indices de letras encontradas es cero entonces la funcion equivocacion pinta una imagen
         if(this.vista.numImagen()>=16){
         this.vista.AvisoPerder();
+            
         }
            this.vista.Equivocacion();
             
@@ -158,6 +169,10 @@ public class Controlador implements ActionListener {
                 this.ahorcado.setModoJuego("Palabras");
             } catch (FileNotFoundException ex) {
                 System.out.println(ex.getMessage());
+            } catch (IOException ex) {
+                Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (JavaLayerException ex) {
+                Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
             }
             
             
@@ -167,6 +182,10 @@ public class Controlador implements ActionListener {
                 this.ahorcado.setModoJuego("Frases");
             } catch (FileNotFoundException ex) {
                 System.out.println(ex.getMessage());
+            } catch (IOException ex) {
+                Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (JavaLayerException ex) {
+                Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
             }
             
             
@@ -175,6 +194,10 @@ public class Controlador implements ActionListener {
                 this.ahorcado.setModoJuego("Textos");
             } catch (FileNotFoundException ex) {
                 System.out.println(ex.getMessage());
+            } catch (IOException ex) {
+                Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (JavaLayerException ex) {
+                Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
             }
             
             }

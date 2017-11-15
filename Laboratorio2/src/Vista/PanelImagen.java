@@ -111,7 +111,7 @@ private Image fondo;
        
     }
 public void agregarImagen(){
-if(this.numImagen<15){
+if(this.numImagen<=15){
 this.numImagen++;
 }
     
