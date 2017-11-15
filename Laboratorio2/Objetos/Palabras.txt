@@ -1,1 +1,5 @@
 actuario
+PERRO 
+GATO 
+ESTRELLA 
+COMPUTADOR

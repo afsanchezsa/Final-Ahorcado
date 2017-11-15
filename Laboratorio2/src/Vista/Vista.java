@@ -86,7 +86,7 @@ public class Vista extends JFrame {
             this.labelSuperior.setFont(new Font("Arial",Font.BOLD,25));
             this.labelSuperior.setText("Ahorcado");
             this.PanelSuperior.add(labelSuperior);
-     this.botones=new JButton[26];
+     this.botones=new JButton[27];
      this.campo=new JTextField();
      this.panelDerecho=new JPanel();
      this.panelDerecho.setBackground(Color.BLUE);
@@ -97,8 +97,8 @@ public class Vista extends JFrame {
          
     
    
-    this.labelderecho.setText("Puntaje Obtenido");
-    this.labellzquierdo.setText("Numero de Intentos");
+    this.labelderecho.setText("Descubre el texto oculto");
+    this.labellzquierdo.setText("Seleccione el tipo");
   
     this.labellzquierdo.setBackground(Color.red);
     this.panelDerecho.add(labelderecho);
@@ -116,7 +116,7 @@ public class Vista extends JFrame {
      for(int i=0;i<13;i++){
        this.panelInferior1.add(botones[i]);
      }
-        for(int i=14;i<26;i++){
+        for(int i=14;i<27;i++){
        this.panelInferior2.add(botones[i]);
      }
         this.panelInferiorGeneral.add(panelInferior1);
@@ -146,6 +146,7 @@ public class Vista extends JFrame {
        //  boton.addActionListener(this.controlador);
      botones[i]=boton;
      }
+     botones[26]=new JButton("N");
      return botones;
      }
      

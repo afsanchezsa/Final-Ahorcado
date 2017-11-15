@@ -22,6 +22,7 @@ public class Ahorcado {
       private ArrayList<Texto>textos;
       private ArrayList<Frase>frases;
       private String ModoJuego;
+    
       private int indicePalabra,indiceFrase,indiceTexto;
       public Ahorcado() throws FileNotFoundException, IOException, JavaLayerException{
       this.palabras=new ArrayList<>();
@@ -32,7 +33,10 @@ public class Ahorcado {
       this.indiceFrase=0;
       this.indiceTexto=0;
       this.Cargar();
+      
       }
+
+   
 
     public int getIndicePalabra() {
         return indicePalabra;
