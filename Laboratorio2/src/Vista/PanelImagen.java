@@ -59,7 +59,7 @@ private Image fondo;
     int i=0,j=0;
     boolean permanecer=true;
     while(permanecer){
-     imagentemporal=this.imagen.getSubimage(63*i,j*63, 63, 63);
+     imagentemporal=this.imagen.getSubimage(47*i,j*47, 47, 47);
      this.imagenes.add(imagentemporal);
             
      if(i==3&&j!=3){
@@ -97,7 +97,7 @@ private Image fondo;
      //       g.drawImage(this.fondo,0,0, this.getHeight(),this.getWidth(), this);
        
        for(int i=0,j=0,m=0;m<numImagen;m++){
-       g.drawImage(this.imagenes.get(m),i*63 , j*63, this);i++;
+       g.drawImage(this.imagenes.get(m),i*47 ,j*47, this);i++;
        if(i==4&&j!=3){//pues si i=4 entonces ya debo cambiar de fila para seguir poniendo las imagenes
        i=0;j++;
        }
